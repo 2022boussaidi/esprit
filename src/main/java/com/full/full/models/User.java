@@ -1,9 +1,7 @@
 package com.full.full.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,5 +21,18 @@ public class User implements Serializable {
     private String username;
     private String name ;
     private String email ;
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "team_id")
+    private Team team;
+    @Transient
+    private Long teamId;
+    public void setTeam(Team team) {
+        this.team = team;
+        this.teamId = team != null ? team.getId() : null;
+    }
+    public Long getTeamId() {
+        return team != null ? team.getId() : null;
+    }
 
 }
