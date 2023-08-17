@@ -51,4 +51,13 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
 
     }
+
+    public boolean verifyAdminCredentials(String email, String password) {
+        // Retrieve the stored admin credentials (replace with your actual database logic)
+        String storedAdminEmail = "admin@example.com"; // Replace with actual stored email
+        String storedAdminPassword = "admin123"; // Replace with actual stored password
+
+        // Compare the provided email and password with stored credentials
+        return email.equals(storedAdminEmail) && password.equals(storedAdminPassword);
+    }
 }
