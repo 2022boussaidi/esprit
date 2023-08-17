@@ -21,6 +21,10 @@ public class User implements Serializable {
     private String username;
     private String name ;
     private String email ;
+    private String phone ;
+    private String accessLevel ;
+
+
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "team_id")
