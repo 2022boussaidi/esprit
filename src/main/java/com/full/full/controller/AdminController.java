@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/admin")
-@CrossOrigin("http://localhost:3000/")
+@CrossOrigin("http://localhost:3002/")
 public class AdminController {
     @PostMapping("/verify")
     public ResponseEntity<String> verifyAdminCredentials(@RequestBody AdminCredentials adminCredentials) {
