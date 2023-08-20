@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:3001/")
+@CrossOrigin("http://localhost:3002/")
 @AllArgsConstructor
 @RequestMapping("teams")
 public class TeamController {
