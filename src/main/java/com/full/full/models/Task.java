@@ -1,6 +1,8 @@
 package com.full.full.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.full.full.models.Project;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,12 +27,12 @@ public class Task implements Serializable {
     private LocalDate deadline;
     private boolean completed;
     @ManyToOne(fetch = FetchType.EAGER)
-
     @JoinColumn(name = "project_id")
+    @JsonIgnoreProperties("tasks")
     private Project project;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "assignee_id")
-    @JsonBackReference
+    @JsonIgnoreProperties("assignedTasks")
     private User assignee;
 
     public void markAsCompleted() {
@@ -39,4 +41,6 @@ public class Task implements Serializable {
             project.updateProgress(); // Update the project's progress when a task is completed
         }
     }
+
+
 }

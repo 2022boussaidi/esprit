@@ -26,7 +26,7 @@ public class Project implements Serializable {
     private LocalDate startDate;
     private LocalDate endDate;
     @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
-    @JsonIgnore
+
     private List<Task> tasks;
     private int progressPercentage;
     private int performanceScore;

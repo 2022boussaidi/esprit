@@ -21,6 +21,7 @@ public class TaskController {
 
     @GetMapping
     List<Task> getAllTasks() {
+
         return taskService.getAllTasks();
     }
 
@@ -47,4 +48,5 @@ public class TaskController {
     void removeTaskFromProject(@PathVariable Long projectId, @PathVariable Long taskId) {
         taskService.removeTaskFromProject(projectId, taskId);
     }
+
 }
