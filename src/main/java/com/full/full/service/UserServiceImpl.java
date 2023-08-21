@@ -45,9 +45,6 @@ public class UserServiceImpl implements UserService {
         existingUser.setName(updatedUser.getName());
         existingUser.setEmail(updatedUser.getEmail());
         existingUser.setUsername(updatedUser.getUsername());
-        existingUser.setPhone(updatedUser.getPhone());
-        existingUser.setAccessLevel(updatedUser.getAccessLevel());
-
 
         return userRepository.save(existingUser);
     }
@@ -57,16 +54,6 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
 
     }
-
-    public boolean verifyAdminCredentials(String email, String password) {
-        // Retrieve the stored admin credentials (replace with your actual database logic)
-        String storedAdminEmail = "admin@example.com"; // Replace with actual stored email
-        String storedAdminPassword = "admin123"; // Replace with actual stored password
-
-        // Compare the provided email and password with stored credentials
-        return email.equals(storedAdminEmail) && password.equals(storedAdminPassword);
-    }
-
     @Override
     public void assignTaskToUser(Long taskId, Long userId) {
         Task task = taskRepository.findById(taskId).orElse(null);
@@ -85,9 +72,5 @@ public class UserServiceImpl implements UserService {
             return user.getAssignedTasks();
         }
         return Collections.emptyList();
-    }
-    @Override
-    public List<User> getAvailableUsers() {
-        return userRepository.findByTeamIsNull();
     }
 }

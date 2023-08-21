@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:3002/")
+@CrossOrigin("http://localhost:3000/")
 @AllArgsConstructor
 @RequestMapping("users")
 public class UserController {
@@ -50,10 +50,6 @@ public class UserController {
     public ResponseEntity<List<Task>> getAssignedTasksForUser(@PathVariable Long userId) {
         List<Task> tasks = userService.getAssignedTasksForUser(userId);
         return ResponseEntity.ok(tasks);
-    }
-    @GetMapping("/available")
-    List<User> getAvailableUsers() {
-        return userService.getAvailableUsers();
     }
 }
 

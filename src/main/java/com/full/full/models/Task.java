@@ -1,7 +1,6 @@
 package com.full.full.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.full.full.models.Project;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,7 +14,7 @@ import java.time.LocalDate;
 @Table(name = "Task")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Task implements Serializable {
+public class Task  implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
@@ -31,6 +30,7 @@ public class Task implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "assignee_id")
     @JsonBackReference
+
     private User assignee;
 
     public void markAsCompleted() {

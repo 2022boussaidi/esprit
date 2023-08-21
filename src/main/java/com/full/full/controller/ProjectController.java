@@ -1,14 +1,16 @@
 package com.full.full.controller;
 
 import com.full.full.models.Project;
+import com.full.full.models.User;
 import com.full.full.service.ProjectService;
+import com.full.full.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:3002/")
+@CrossOrigin("http://localhost:3000/")
 @AllArgsConstructor
 @RequestMapping("projects")
 public class ProjectController {
@@ -39,3 +41,4 @@ public class ProjectController {
         projectService.deleteProject(id);
     }
 }
+

@@ -103,4 +103,4 @@ public class Project implements Serializable {
         // You can consider factors such as task quality, adherence to deadlines, etc.
         performanceScore = calculatePerformanceScore();
     }
-}
+    }

@@ -22,10 +22,6 @@ public class User implements Serializable {
     private String username;
     private String name ;
     private String email ;
-    private String phone ;
-    private String accessLevel ;
-
-
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "team_id")
@@ -39,7 +35,8 @@ public class User implements Serializable {
     public Long getTeamId() {
         return team != null ? team.getId() : null;
     }
-
     @OneToMany(mappedBy = "assignee", cascade = CascadeType.ALL)
+
     private List<Task> assignedTasks;
+
 }

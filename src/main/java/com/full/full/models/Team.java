@@ -22,4 +22,9 @@ public class Team implements Serializable {
 
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
     private List<User> members;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "project_id") // This creates the foreign key column in the Team table
+    private Project project;
+
+
 }

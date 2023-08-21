@@ -1,14 +1,16 @@
 package com.full.full.controller;
 
 import com.full.full.models.Task;
+import com.full.full.models.Team;
 import com.full.full.service.TaskService;
+import com.full.full.service.TeamService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:3002/")
+@CrossOrigin("http://localhost:3000/")
 @AllArgsConstructor
 @RequestMapping("tasks")
 public class TaskController {

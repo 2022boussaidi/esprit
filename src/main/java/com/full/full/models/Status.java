@@ -1,4 +1,4 @@
-package com.full.full.model;
+package com.full.full.models;
 
 public enum Status {
     JOIN,

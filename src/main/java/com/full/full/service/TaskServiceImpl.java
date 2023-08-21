@@ -1,16 +1,20 @@
 package com.full.full.service;
 
 import com.full.full.models.Project;
+import com.full.full.models.Team;
+import com.full.full.models.User;
 import com.full.full.models.Task;
 import com.full.full.repository.ProjectRepo;
 import com.full.full.repository.TaskRepo;
+import com.full.full.repository.TeamRepo;
+import com.full.full.repository.UserRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
-public class TaskServiceImpl implements TaskService {
+public class TaskServiceImpl  implements TaskService {
     private final TaskRepo taskRepo;
     private final ProjectRepo projectRepo;
 
