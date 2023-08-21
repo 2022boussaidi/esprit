@@ -51,5 +51,9 @@ public class UserController {
         List<Task> tasks = userService.getAssignedTasksForUser(userId);
         return ResponseEntity.ok(tasks);
     }
+    @GetMapping("/available")
+    List<User> getAvailableUsers() {
+        return userService.getAvailableUsers();
+    }
 }
 

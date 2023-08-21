@@ -86,4 +86,8 @@ public class UserServiceImpl implements UserService {
         }
         return Collections.emptyList();
     }
+    @Override
+    public List<User> getAvailableUsers() {
+        return userRepository.findByTeamIsNull();
+    }
 }

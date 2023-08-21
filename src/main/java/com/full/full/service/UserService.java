@@ -14,4 +14,5 @@ public interface UserService {
     void deleteUser(Long id);
     void assignTaskToUser(Long taskId, Long userId);
     List<Task> getAssignedTasksForUser(Long userId);
+    List<User> getAvailableUsers();
 }
