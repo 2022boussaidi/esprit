@@ -3,6 +3,7 @@ package com.full.full.controller;
 import com.full.full.models.Task;
 import com.full.full.service.TaskService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -47,6 +48,11 @@ public class TaskController {
     @DeleteMapping("/{projectId}/removeTask/{taskId}")
     void removeTaskFromProject(@PathVariable Long projectId, @PathVariable Long taskId) {
         taskService.removeTaskFromProject(projectId, taskId);
+    }
+    @PutMapping("/{id}/mark-completed")
+    ResponseEntity<String> markTaskAsCompleted(@PathVariable Long id) {
+        taskService.markTaskAsCompleted(id);
+        return ResponseEntity.ok("Task marked as completed.");
     }
 
 }

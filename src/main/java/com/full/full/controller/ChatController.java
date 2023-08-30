@@ -1,7 +1,6 @@
 package com.full.full.controller;
 
-import com.full.full.model.Message;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.full.full.chat.Message;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;

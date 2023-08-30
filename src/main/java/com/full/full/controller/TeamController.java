@@ -1,12 +1,17 @@
 package com.full.full.controller;
 
 import com.full.full.models.Team;
+import com.full.full.models.TeamTaskCount;
 import com.full.full.models.User;
+import com.full.full.service.TaskService;
 import com.full.full.service.TeamService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin("http://localhost:3002/")
@@ -14,6 +19,7 @@ import java.util.List;
 @RequestMapping("teams")
 public class TeamController {
     private final TeamService teamService;
+
 
     @PostMapping
     Team newTeam(@RequestBody Team newTeam) {
@@ -48,4 +54,12 @@ public class TeamController {
     void removeMemberFromTeam(@PathVariable Long teamId, @PathVariable Long memberId) {
         teamService.removeMemberFromTeam(teamId, memberId);
     }
+    @GetMapping("/completed-task-count")
+    public ResponseEntity<List<TeamTaskCount>> getCompletedTaskCounts() {
+        List<TeamTaskCount> taskCounts = teamService.getCompletedTaskCounts();
+        return ResponseEntity.ok(taskCounts);
+    }
+
+
+
 }

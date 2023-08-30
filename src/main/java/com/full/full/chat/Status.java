@@ -1,4 +1,4 @@
-package com.full.full.model;
+package com.full.full.chat;
 
 public enum Status {
     JOIN,

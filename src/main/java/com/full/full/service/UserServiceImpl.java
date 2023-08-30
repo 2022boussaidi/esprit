@@ -90,4 +90,17 @@ public class UserServiceImpl implements UserService {
     public List<User> getAvailableUsers() {
         return userRepository.findByTeamIsNull();
     }
+    @Override
+    public List<User> getJoinedMembers() {
+        return userRepository.findByJoined(true);
+    }
+
+    @Override
+    public void joinChatroom(String username) {
+        User user = userRepository.findByUsername(username);
+        if (user != null) {
+            user.setJoined(true);
+            userRepository.save(user);
+        }
+    }
 }

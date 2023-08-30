@@ -1,13 +1,15 @@
 package com.full.full.service;
 
+import com.full.full.models.Task;
 import com.full.full.models.Team;
+import com.full.full.models.TeamTaskCount;
 import com.full.full.models.User;
 import com.full.full.repository.TeamRepo;
 import com.full.full.repository.UserRepo;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 @Service
 public class TeamServiceImpl implements TeamService {
@@ -77,6 +79,58 @@ public class TeamServiceImpl implements TeamService {
             throw new NoSuchElementException("User with id " + memberId + " is not a member of the team with id " + teamId);
         }
     }
+    @Override
+    public List<TeamTaskCount> getCompletedTaskCounts() {
+        List<Team> teams = teamRepo.findAll();
+        List<TeamTaskCount> taskCounts = new ArrayList<>();
+
+        for (Team team : teams) {
+            int completedTaskCount = countCompletedTasksInTeam(team.getId());
+
+            TeamTaskCount taskCount = new TeamTaskCount();
+            taskCount.setTeamName(team.getName());
+            taskCount.setCompletedTaskCount(completedTaskCount);
+
+            taskCounts.add(taskCount);
+        }
+
+        return taskCounts;
+    }
+    @Override
+    public int countTasksInTeam(Long teamId) {
+        Optional<Team> teamOptional = teamRepo.findById(teamId);
+        if (teamOptional.isPresent()) {
+            Team team = teamOptional.get();
+            int numberOfTasks= 0;
+
+            for (User user : team.getMembers()) {
+                numberOfTasks += user.getAssignedTasks().size();
+            }
+
+            return numberOfTasks;
+        }
+        return 0;
+    }
+    @Override
+    public int countCompletedTasksInTeam(Long teamId) {
+        Optional<Team> teamOptional = teamRepo.findById(teamId);
+        if (teamOptional.isPresent()) {
+            Team team = teamOptional.get();
+            int completedTaskCount = 0;
+
+            for (User user : team.getMembers()) {
+                for (Task task : user.getAssignedTasks()) {
+                    if (task.isCompleted()) {
+                        completedTaskCount++;
+                    }
+                }
+            }
+
+            return completedTaskCount;
+        }
+        return 0;
+    }
+
 }
 
 

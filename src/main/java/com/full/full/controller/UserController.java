@@ -55,5 +55,15 @@ public class UserController {
     List<User> getAvailableUsers() {
         return userService.getAvailableUsers();
     }
+    @GetMapping("/joined-members")
+    public List<User> getJoinedMembers() {
+        return userService.getJoinedMembers();
+    }
+
+    @PostMapping("/join-chatroom/{username}")
+    public void joinChatroom(@PathVariable String username) {
+        userService.joinChatroom(username);
+    }
+
 }
 
