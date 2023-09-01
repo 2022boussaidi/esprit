@@ -1,5 +1,6 @@
 package com.full.full.service;
 
+import com.full.full.models.PieChartData;
 import com.full.full.models.Task;
 import com.full.full.models.User;
 import com.full.full.repository.TaskRepo;
@@ -103,4 +104,54 @@ public class UserServiceImpl implements UserService {
             userRepository.save(user);
         }
     }
+    @Override
+    public boolean isUserAssignedToTeam(Long userId) {
+        User user = getUserById(userId);
+        return user != null && user.isAssignedToTeam();
+    }
+
+    @Override
+    public int getNumberOfAssignedTasks(Long userId) {
+        User user = getUserById(userId);
+        return (user != null && user.getAssignedTasks() != null) ? user.getAssignedTasks().size() : 0;
+    }
+    @Override
+    public int getNumberOfUsersAssignedToTeams() {
+        return userRepository.countUsersAssignedToTeams();
+    }
+
+    @Override
+    public int countUsersWithTasksBelow2() {
+        return userRepository.countUsersWithTasksBelow2();
+    }
+
+    @Override
+    public int countUsersWithTasksBetween3And5() {
+        return userRepository.countUsersWithTasksBetween3And5();
+    }
+
+    @Override
+    public int countUsersWithTasksAbove5() {
+        return userRepository.countUsersWithTasksAbove5();
+    }
+
+    @Override
+    public int countUsersAssignedToTeams() {
+        return userRepository.countUsersAssignedToTeams();
+    }
+
+    @Override
+    public int countUsersNotAssignedToTeams() {
+        return userRepository.countUsersNotAssignedToTeams();
+    }
+    public PieChartData getPieChartData() {
+        PieChartData data = new PieChartData();
+        data.setUsersWithTasksBelow2(userRepository.countUsersWithTasksBelow2());
+        data.setUsersWithTasksBetween3And5(userRepository.countUsersWithTasksBetween3And5());
+        data.setUsersWithTasksAbove5(userRepository.countUsersWithTasksAbove5());
+        data.setUsersAssignedToTeams(userRepository.countUsersAssignedToTeams());
+        data.setUsersNotAssignedToTeams(userRepository.countUsersNotAssignedToTeams());
+        return data;
+    }
+
 }

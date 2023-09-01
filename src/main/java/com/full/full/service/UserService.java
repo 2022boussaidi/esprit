@@ -1,5 +1,6 @@
 package com.full.full.service;
 
+import com.full.full.models.PieChartData;
 import com.full.full.models.Task;
 import com.full.full.models.User;
 
@@ -17,4 +18,13 @@ public interface UserService {
     List<User> getAvailableUsers();
     List<User> getJoinedMembers();
     void joinChatroom(String username);
+    boolean isUserAssignedToTeam(Long userId);
+    int getNumberOfAssignedTasks(Long userId);
+    int getNumberOfUsersAssignedToTeams();
+    int countUsersWithTasksBelow2();
+    int countUsersWithTasksBetween3And5();
+    int countUsersWithTasksAbove5();
+    int countUsersAssignedToTeams();
+    int countUsersNotAssignedToTeams();
+    PieChartData getPieChartData();
 }

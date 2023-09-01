@@ -44,4 +44,8 @@ public class User implements Serializable {
 
     @OneToMany(mappedBy = "assignee", cascade = CascadeType.ALL)
     private List<Task> assignedTasks;
+    public boolean isAssignedToTeam() {
+        return team != null;
+    }
+
 }

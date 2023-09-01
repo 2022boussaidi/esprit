@@ -1,5 +1,6 @@
 package com.full.full.controller;
 
+import com.full.full.models.PieChartData;
 import com.full.full.models.Task;
 import com.full.full.models.User;
 import com.full.full.service.UserService;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:3002/")
+@CrossOrigin("http://localhost:3000/")
 @AllArgsConstructor
 @RequestMapping("users")
 public class UserController {
@@ -63,6 +64,24 @@ public class UserController {
     @PostMapping("/join-chatroom/{username}")
     public void joinChatroom(@PathVariable String username) {
         userService.joinChatroom(username);
+    }
+    @GetMapping("/{id}/isAssignedToTeam")
+    public boolean isUserAssignedToTeam(@PathVariable Long id) {
+        return userService.isUserAssignedToTeam(id);
+    }
+
+    @GetMapping("/{id}/numberOfAssignedTasks")
+    public int getNumberOfAssignedTasks(@PathVariable Long id) {
+        return userService.getNumberOfAssignedTasks(id);
+    }
+    @GetMapping("/countUsersAssignedToTeams")
+    public int getNumberOfUsersAssignedToTeams() {
+        return userService.getNumberOfUsersAssignedToTeams();
+    }
+    @GetMapping("/pieChartData")
+    public ResponseEntity<PieChartData> getPieChartData() {
+        PieChartData data = userService.getPieChartData();
+        return ResponseEntity.ok(data);
     }
 
 }
