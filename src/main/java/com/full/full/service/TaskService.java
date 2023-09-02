@@ -13,4 +13,9 @@ public interface TaskService {
     void addTaskToProject(Long projectId, Long taskId);
     void removeTaskFromProject(Long projectId, Long taskId);
     void markTaskAsCompleted(Long taskId);
+    int getNumberOfCompletedTasks();
+    int getNumberOfUnassignedTasks();
+    int getNumberOfUncompletedTasks();
+
+
 }

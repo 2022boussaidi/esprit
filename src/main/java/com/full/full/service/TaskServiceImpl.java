@@ -95,4 +95,16 @@ public class TaskServiceImpl implements TaskService {
             throw new TaskNotFoundException("Task not found with ID: " + taskId);
         }
     }
+    @Override
+    public int getNumberOfCompletedTasks() {
+        return taskRepo.countByCompletedTrue();
+    }
+    @Override
+    public int getNumberOfUnassignedTasks() {
+        return taskRepo.countByAssigneeIsNull();
+    }
+    @Override
+    public int getNumberOfUncompletedTasks() {
+        return taskRepo.countUncompletedTasks();
+    }
 }

@@ -54,5 +54,21 @@ public class TaskController {
         taskService.markTaskAsCompleted(id);
         return ResponseEntity.ok("Task marked as completed.");
     }
+    @GetMapping("/completed-count")
+    public ResponseEntity<Integer> getNumberOfCompletedTasks() {
+        int completedTaskCount = taskService.getNumberOfCompletedTasks();
+        return ResponseEntity.ok(completedTaskCount);
+    }
+    @GetMapping("/unassigned-count")
+    public ResponseEntity<Integer> getNumberOfUnassignedTasks() {
+        int unassignedTaskCount = taskService.getNumberOfUnassignedTasks();
+        return ResponseEntity.ok(unassignedTaskCount);
+    }
+    @GetMapping("/uncompleted-count")
+    public ResponseEntity<Integer> getNumberOfUncompletedTasks() {
+        int uncompletedTaskCount = taskService.getNumberOfUncompletedTasks();
+        return ResponseEntity.ok(uncompletedTaskCount);
+    }
+
 
 }
