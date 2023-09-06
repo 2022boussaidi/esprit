@@ -48,4 +48,6 @@ public class User implements Serializable {
         return team != null;
     }
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Notes> notes;
 }

@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@CrossOrigin("http://localhost:3000/")
+@CrossOrigin("http://localhost:3001/")
 @AllArgsConstructor
 @RequestMapping("teams")
 public class TeamController {
@@ -59,7 +59,20 @@ public class TeamController {
         List<TeamTaskCount> taskCounts = teamService.getCompletedTaskCounts();
         return ResponseEntity.ok(taskCounts);
     }
+    @GetMapping("/members-less-than-three")
+    List<Team> getTeamsWithMembersLessThanThree() {
+        return teamService.getTeamsWithMembersLessThanThree();
+    }
 
+    @GetMapping("/members-between-four-and-seven")
+    List<Team> getTeamsWithMembersBetweenFourAndSeven() {
+        return teamService.getTeamsWithMembersBetweenFourAndSeven();
+    }
+
+    @GetMapping("/members-more-than-seven")
+    List<Team> getTeamsWithMembersMoreThanSeven() {
+        return teamService.getTeamsWithMembersMoreThanSeven();
+    }
 
 
 }

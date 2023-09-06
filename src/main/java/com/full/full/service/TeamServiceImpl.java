@@ -130,6 +130,20 @@ public class TeamServiceImpl implements TeamService {
         }
         return 0;
     }
+    @Override
+    public List<Team> getTeamsWithMembersLessThanThree() {
+        return teamRepo.findTeamsWithMembersLessThanThree();
+    }
+
+    @Override
+    public List<Team> getTeamsWithMembersBetweenFourAndSeven() {
+        return teamRepo.findTeamsWithMembersBetweenFourAndSeven();
+    }
+
+    @Override
+    public List<Team> getTeamsWithMembersMoreThanSeven() {
+        return teamRepo.findTeamsWithMembersMoreThanSeven();
+    }
 
 }
 

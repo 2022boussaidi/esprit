@@ -19,6 +19,9 @@ public interface TeamService {
     int countCompletedTasksInTeam(Long teamId);
     int countTasksInTeam(Long teamId);
     List<TeamTaskCount> getCompletedTaskCounts();
+    List<Team> getTeamsWithMembersLessThanThree();
+    List<Team> getTeamsWithMembersBetweenFourAndSeven();
+    List<Team> getTeamsWithMembersMoreThanSeven();
 }
 
 

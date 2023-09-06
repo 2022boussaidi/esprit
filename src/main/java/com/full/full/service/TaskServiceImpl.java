@@ -3,6 +3,7 @@ package com.full.full.service;
 import com.full.full.exceptions.TaskNotFoundException;
 import com.full.full.models.Project;
 import com.full.full.models.Task;
+import com.full.full.models.Team;
 import com.full.full.repository.ProjectRepo;
 import com.full.full.repository.TaskRepo;
 import org.springframework.stereotype.Service;
@@ -107,4 +108,6 @@ public class TaskServiceImpl implements TaskService {
     public int getNumberOfUncompletedTasks() {
         return taskRepo.countUncompletedTasks();
     }
+
+
 }
