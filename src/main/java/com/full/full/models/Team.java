@@ -26,5 +26,11 @@ public class Team implements Serializable {
     @JoinColumn(name = "project_id") // This creates the foreign key column in the Team table
     private Project project;
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

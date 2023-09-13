@@ -48,4 +48,5 @@ public class TeamController {
     void removeMemberFromTeam(@PathVariable Long teamId, @PathVariable Long memberId) {
         teamService.removeMemberFromTeam(teamId, memberId);
     }
+
 }

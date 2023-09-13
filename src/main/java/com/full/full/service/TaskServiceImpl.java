@@ -1,5 +1,6 @@
 package com.full.full.service;
 
+import com.full.full.exceptions.TaskNotFoundException;
 import com.full.full.models.Project;
 import com.full.full.models.Team;
 import com.full.full.models.User;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class TaskServiceImpl  implements TaskService {
@@ -86,5 +88,28 @@ public class TaskServiceImpl  implements TaskService {
         }
     }
 
+    @Override
+    public void markTaskAsCompleted(Long taskId) {
+        Optional<Task> taskOptional = taskRepo.findById(taskId);
+        if (taskOptional.isPresent()) {
+            Task task = taskOptional.get();
+            task.markAsCompleted();
+            taskRepo.save(task); // Save the updated task
+        } else {
+            throw new TaskNotFoundException("Task not found with ID: " + taskId);
+        }
+    }
+    @Override
+    public int getNumberOfCompletedTasks() {
+        return taskRepo.countByCompletedTrue();
+    }
+    @Override
+    public int getNumberOfUnassignedTasks() {
+        return taskRepo.countByAssigneeIsNull();
+    }
+    @Override
+    public int getNumberOfUncompletedTasks() {
+        return taskRepo.countUncompletedTasks();
+    }
 
 }

@@ -1,10 +1,12 @@
 package com.full.full.controller;
 
+import com.full.full.models.Project;
 import com.full.full.models.Task;
 import com.full.full.models.Team;
 import com.full.full.service.TaskService;
 import com.full.full.service.TeamService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -48,5 +50,25 @@ public class TaskController {
     @DeleteMapping("/{projectId}/removeTask/{taskId}")
     void removeTaskFromProject(@PathVariable Long projectId, @PathVariable Long taskId) {
         taskService.removeTaskFromProject(projectId, taskId);
+    }
+    @PutMapping("/{id}/mark-completed")
+    ResponseEntity<String> markTaskAsCompleted(@PathVariable Long id) {
+        taskService.markTaskAsCompleted(id);
+        return ResponseEntity.ok("Task marked as completed.");
+    }
+    @GetMapping("/completed-count")
+    public ResponseEntity<Integer> getNumberOfCompletedTasks() {
+        int completedTaskCount = taskService.getNumberOfCompletedTasks();
+        return ResponseEntity.ok(completedTaskCount);
+    }
+    @GetMapping("/unassigned-count")
+    public ResponseEntity<Integer> getNumberOfUnassignedTasks() {
+        int unassignedTaskCount = taskService.getNumberOfUnassignedTasks();
+        return ResponseEntity.ok(unassignedTaskCount);
+    }
+    @GetMapping("/uncompleted-count")
+    public ResponseEntity<Integer> getNumberOfUncompletedTasks() {
+        int uncompletedTaskCount = taskService.getNumberOfUncompletedTasks();
+        return ResponseEntity.ok(uncompletedTaskCount);
     }
 }

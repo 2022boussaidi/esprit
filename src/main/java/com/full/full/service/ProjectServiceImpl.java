@@ -2,8 +2,10 @@ package com.full.full.service;
 
 import com.full.full.models.Project;
 
+import com.full.full.models.Task;
 import com.full.full.repository.ProjectRepo;
 
+import com.full.full.repository.TaskRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,9 +14,13 @@ import java.util.NoSuchElementException;
 @Service
 public class ProjectServiceImpl  implements  ProjectService{
     private ProjectRepo projectRepository;
+    private TaskRepo taskRepository;
 
-    public ProjectServiceImpl(ProjectRepo projectRepository) {
+
+    public ProjectServiceImpl(ProjectRepo projectRepository,TaskRepo taskRepository) {
+
         this.projectRepository = projectRepository;
+        this.taskRepository=taskRepository ;
     }
 
     @Override

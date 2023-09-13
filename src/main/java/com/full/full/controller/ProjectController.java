@@ -40,5 +40,6 @@ public class ProjectController {
     void deleteProject(@PathVariable Long id) {
         projectService.deleteProject(id);
     }
+
 }
 
