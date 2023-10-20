@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("notes")
-@CrossOrigin("http://localhost:3001/")
+@CrossOrigin("http://localhost:3000/")
 
 public class NotesController {
 
